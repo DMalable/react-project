@@ -1,5 +1,7 @@
 import React from "react";
-import logo from "./logo.png";
+import { Button } from "@material-ui/core";
+import { Logo } from "loft-taxi-mui-theme";
+// import logo from "./logo.png";
 
 class Header extends React.Component {
   render() {
@@ -7,35 +9,42 @@ class Header extends React.Component {
 
     return (
       <header>
-        <img src={logo} alt="логотип"></img>
+        <Logo />
+        {/* <img src={Logo} alt="логотип"></img> */}
         <nav>
           <ul>
             <li>
-              <button
+              <Button
                 onClick={() => {
                   navigateTo("map");
                 }}
+                variant="contained"
+                color="primary"
               >
                 Карта
-              </button>
+              </Button>
             </li>
             <li>
-              <button
+              <Button
                 onClick={() => {
                   navigateTo("profile");
                 }}
+                variant="contained"
+                color="primary"
               >
                 Профиль
-              </button>
+              </Button>
             </li>
             <li>
-              <button
+              <Button
                 onClick={() => {
                   navigateTo("login");
                 }}
+                variant="contained"
+                color="primary"
               >
                 Выйти
-              </button>
+              </Button>
             </li>
           </ul>
         </nav>

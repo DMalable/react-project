@@ -22,14 +22,11 @@ class App extends React.Component {
   render() {
     const Page = PAGES[this.state.curPage];
     return (
-      <>
-        <main>
-          <section>
-            {/* <{PAGES[this.state.curPage]} navigateTo = {this.navigateTo}/> */}
-            <Page navigateTo={this.navigateTo} />
-          </section>
-        </main>
-      </>
+      <main>
+        <section>
+          <Page navigateTo={this.navigateTo} />
+        </section>
+      </main>
     );
   }
 }

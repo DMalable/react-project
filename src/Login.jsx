@@ -1,4 +1,5 @@
 import React from "react";
+import { Button, Input } from "@material-ui/core";
 
 class Login extends React.Component {
   render() {
@@ -9,23 +10,29 @@ class Login extends React.Component {
         <form>
           <h3>Войти</h3>
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" />
+          <Input id="email" type="email" name="email" />
           <label htmlFor="password">Пароль</label>
-          <input id="password" type="password" name="password" />
-          <button
+          <Input id="password" type="password" name="password" />
+          <Button
             onClick={() => {
               navigateTo("map");
             }}
+            variant="contained"
+            color="primary"
           >
             Воити
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => {
               navigateTo("registration");
             }}
+            variant="contained"
+            color="primary"
+            disableElevation
+            style={{ marginLeft: "10px", borderRadius: "100px" }}
           >
             Регистрация
-          </button>
+          </Button>
         </form>
       </>
     );
