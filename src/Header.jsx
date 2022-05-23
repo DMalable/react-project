@@ -1,16 +1,15 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import { Logo } from "loft-taxi-mui-theme";
-// import logo from "./logo.png";
+import PropTypes from "prop-types";
+import logo from "./logo.png";
 
 class Header extends React.Component {
   render() {
     const { navigateTo } = this.props;
 
     return (
-      <header>
-        <Logo />
-        {/* <img src={Logo} alt="логотип"></img> */}
+      <header className="header">
+        <img src={logo} alt="логотип" className="header-logo"></img>
         <nav>
           <ul>
             <li>
@@ -18,30 +17,30 @@ class Header extends React.Component {
                 onClick={() => {
                   navigateTo("map");
                 }}
-                variant="contained"
-                color="primary"
+                color="secondary"
+                className="header-button"
               >
                 Карта
               </Button>
             </li>
             <li>
               <Button
+                className="header-button"
                 onClick={() => {
                   navigateTo("profile");
                 }}
-                variant="contained"
-                color="primary"
+                color="secondary"
               >
                 Профиль
               </Button>
             </li>
             <li>
               <Button
+                className="header-button"
                 onClick={() => {
                   navigateTo("login");
                 }}
-                variant="contained"
-                color="primary"
+                color="secondary"
               >
                 Выйти
               </Button>
@@ -52,5 +51,9 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  navigateTo: PropTypes.func,
+};
 
 export { Header };

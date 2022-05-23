@@ -1,7 +1,8 @@
 import { Header } from "./Header";
-import { Button, Input, FormLabel } from "@material-ui/core";
+// import { Button, Input, FormLabel } from "@material-ui/core";
+import PropTypes from "prop-types";
 
-export const Profile = (props) => {
+const Profile = (props) => {
   const { navigateTo } = props;
 
   return (
@@ -11,3 +12,9 @@ export const Profile = (props) => {
     </>
   );
 };
+
+Profile.propTypes = {
+  navigateTo: PropTypes.func,
+};
+
+export { Profile };
