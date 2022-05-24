@@ -2,8 +2,15 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import logo from "./logo.png";
+import { withAuth } from "./AuthContext";
 
 class Header extends React.Component {
+  unauthenticate = (event) => {
+    event.preventDefault();
+    this.props.logOut();
+    this.props.navigateTo("login");
+  };
+
   render() {
     const { navigateTo } = this.props;
 
@@ -35,13 +42,7 @@ class Header extends React.Component {
               </Button>
             </li>
             <li>
-              <Button
-                className="header-button"
-                onClick={() => {
-                  navigateTo("login");
-                }}
-                color="secondary"
-              >
+              <Button className="header-button" onClick={this.unauthenticate} color="secondary">
                 Выйти
               </Button>
             </li>
@@ -54,6 +55,11 @@ class Header extends React.Component {
 
 Header.propTypes = {
   navigateTo: PropTypes.func,
+  isLoggedIn: PropTypes.bool,
+  logIn: PropTypes.func,
+  logOut: PropTypes.func,
 };
 
-export { Header };
+// export { Header };
+
+export const HeaderWithAuth = withAuth(Header);

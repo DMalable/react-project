@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Header } from "./Header";
+import { HeaderWithAuth } from "./Header";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 
@@ -18,7 +18,8 @@ class Map extends Component {
   }
 
   componentWillUnmount() {
-    this.map.remove(); //?????
+    //требуется т.к. при первом рендере map = null
+    this.map.remove && this.map.remove();
   }
 
   render() {
@@ -26,7 +27,7 @@ class Map extends Component {
 
     return (
       <>
-        <Header navigateTo={navigateTo} />
+        <HeaderWithAuth navigateTo={navigateTo} />
         <div className="map-wrapper">
           <div data-testid="map" className="map" ref={this.mapContainer} />
         </div>

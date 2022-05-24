@@ -1,11 +1,12 @@
+import "@fontsource/roboto";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-// import reportWebVitals from "./reportWebVitals";
 import { createTheme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "loft-taxi-mui-theme";
+import { AuthProvider } from "./AuthContext";
 
 const ExtendedTheme = createTheme(theme, {
   overrides: {
@@ -14,8 +15,9 @@ const ExtendedTheme = createTheme(theme, {
         textTransform: "none",
       },
       containedPrimary: {
+        fontSize: "25px",
         backgroundColor: "#ffc617",
-        borderRadius: "20px",
+        borderRadius: "60px",
         "&:focus": {
           boxShadow: "none",
         },
@@ -53,6 +55,7 @@ const ExtendedTheme = createTheme(theme, {
         fontSize: "30px",
         fontWeight: "700",
         textAlign: "center",
+        marginBottom: "60px",
       },
     },
     MuiInputLabel: {
@@ -61,6 +64,7 @@ const ExtendedTheme = createTheme(theme, {
         fontSize: "16px",
         fontWeight: "600",
         textAlign: "left",
+        marginBottom: "15px",
       },
     },
   },
@@ -70,9 +74,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <MuiThemeProvider theme={ExtendedTheme}>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </MuiThemeProvider>
   </React.StrictMode>
 );
-
-/* reportWebVitals(); */
