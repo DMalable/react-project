@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { withAuth } from "./AuthContext";
+import { withAuth } from "../../contexts/AuthContext";
 
-class Login extends React.Component {
+class Login extends Component {
   authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
@@ -49,7 +49,5 @@ Login.propTypes = {
   logIn: PropTypes.func,
   logOut: PropTypes.func,
 };
-
-// export { Login };
 
 export const LoginWithAuth = withAuth(Login);

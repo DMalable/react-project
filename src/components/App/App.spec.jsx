@@ -17,4 +17,10 @@ describe("App", () => {
       expect(container.innerHTML).toMatch("Воити");
     });
   });
+  describe("when logged in", () => {
+    // it("renders correctly", () => {
+    //   const { container } = render(<App isLoggedIn />);
+    //   // expect(container.innerHTML).toMatch("aВойти");
+    // });
+  });
 });

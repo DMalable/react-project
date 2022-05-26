@@ -1,4 +1,4 @@
-import { HeaderWithAuth } from "./Header";
+import { HeaderWithAuth } from "../Header/Header";
 // import { Button, Input, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 

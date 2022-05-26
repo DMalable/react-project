@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 
-class Registration extends React.Component {
+class Registration extends Component {
   render() {
     const { navigateTo } = this.props;
 

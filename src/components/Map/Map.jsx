@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HeaderWithAuth } from "./Header";
+import { HeaderWithAuth } from "../Header/Header";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 

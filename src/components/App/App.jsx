@@ -1,11 +1,10 @@
-import React from "react";
-import { LoginWithAuth } from "./Login";
-// import { Login } from "./Login";
-import { Registration } from "./Registration";
-import { Map } from "./Map";
-import { Profile } from "./Profile";
+import React, { Component } from "react";
+import { LoginWithAuth } from "../Login/Login";
+import { Registration } from "../Registration/Registration";
+import { Map } from "../Map/Map";
+import { Profile } from "../Profile/Profile";
 import "./App.css";
-import { withAuth } from "./AuthContext";
+import { withAuth } from "../../contexts/AuthContext";
 import PropTypes from "prop-types";
 
 const PAGES = {
@@ -15,7 +14,7 @@ const PAGES = {
   profile: Profile,
 };
 
-class App extends React.Component {
+class App extends Component {
   state = { curPage: "login" };
 
   navigateTo = (page) => {

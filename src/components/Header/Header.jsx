@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
-import logo from "./logo.png";
-import { withAuth } from "./AuthContext";
+import logo from "./../../logo.png";
+import { withAuth } from "../../contexts/AuthContext";
 
-class Header extends React.Component {
+class Header extends Component {
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
