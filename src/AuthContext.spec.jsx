@@ -5,7 +5,7 @@ import { act } from "react-dom/test-utils";
 
 describe("AuthContext", () => {
   describe("#logIn", () => {
-    it("sets 'isLoggedIn' to false", () => {
+    it("sets 'isLoggedIn' to true", () => {
       let isLoggedIn;
       let logIn;
 

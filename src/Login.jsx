@@ -25,7 +25,7 @@ class Login extends React.Component {
               <Input id="email" type="email" name="email" />
               <InputLabel htmlFor="password">Пароль</InputLabel>
               <Input id="password" type="password" name="password" variant="contained" color="primary" />
-              <Button type="submit" variant="contained" color="primary">
+              <Button data-testid="submit" type="submit" variant="contained" color="primary">
                 Воити
               </Button>
               <Button
