@@ -19,16 +19,16 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={{ logIn, logOut, isLoggedIn }}>{children}</AuthContext.Provider>;
 };
 
-export const withAuth = (WrappedComponent) => {
-  return class extends React.Component {
-    render() {
-      return (
-        <AuthContext.Consumer>
-          {(value) => {
-            return <WrappedComponent {...value} {...this.props} />;
-          }}
-        </AuthContext.Consumer>
-      );
-    }
-  };
-};
+// export const withAuth = (WrappedComponent) => {
+//   return class extends React.Component {
+//     render() {
+//       return (
+//         <AuthContext.Consumer>
+//           {(value) => {
+//             return <WrappedComponent {...value} {...this.props} />;
+//           }}
+//         </AuthContext.Consumer>
+//       );
+//     }
+//   };
+// };

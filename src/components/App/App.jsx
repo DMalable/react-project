@@ -1,50 +1,56 @@
-import React, { Component } from "react";
-import { LoginWithAuth } from "../Login/Login";
+import React, { useContext, useState } from "react";
+import Login from "../Login/Login";
 import { Registration } from "../Registration/Registration";
 import { Map } from "../Map/Map";
 import { Profile } from "../Profile/Profile";
 import "./App.css";
-import { withAuth } from "../../contexts/AuthContext";
+// import { withAuth } from "../../contexts/AuthContext";
 import PropTypes from "prop-types";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const PAGES = {
-  login: LoginWithAuth,
+  login: Login,
   registration: Registration,
   map: Map,
   profile: Profile,
 };
 
-class App extends Component {
-  state = { curPage: "login" };
+const App = () => {
+  // state = { curPage: "login" }; ///??????
+  const [CurPageObj, setCurPageObj] = useState({ curPage: "login" });
 
-  navigateTo = (page) => {
+  const authData = useContext(AuthContext);
+  const { isLoggedIn } = authData;
+
+  const navigateTo = (page) => {
     //для страницы регистрации не требуется логина
-    if (this.props.isLoggedIn || page === "registration") {
-      this.setState({ curPage: page });
+    if (isLoggedIn || page === "registration") {
+      // this.setState({ curPage: page }); ///???????????
+      setCurPageObj({ curPage: page });
     } else {
-      this.setState({ curPage: "login" });
+      // this.setState({ curPage: "login" }); ///???????????
+      setCurPageObj({ curPage: "login" });
     }
   };
 
-  render() {
-    const Page = PAGES[this.state.curPage];
-    return (
-      <>
-        <main>
-          <section>
-            <Page navigateTo={this.navigateTo} />
-          </section>
-        </main>
-      </>
-    );
-  }
-}
+  // const Page = PAGES[state.curPage];
+  const Page = PAGES[CurPageObj.curPage];
+  return (
+    <>
+      <main>
+        <section>
+          <Page navigateTo={navigateTo} />
+        </section>
+      </main>
+    </>
+  );
+};
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  logIn: PropTypes.func,
-  logOut: PropTypes.func,
+  // logIn: PropTypes.func,
+  // logOut: PropTypes.func,
 };
 
-export default withAuth(App);
-// export default App;
+// export default withAuth(App);
+export default App;

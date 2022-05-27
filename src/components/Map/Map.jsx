@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { HeaderWithAuth } from "../Header/Header";
+import Header from "../Header/Header";
 import mapboxgl from "mapbox-gl";
 import PropTypes from "prop-types";
 
@@ -27,7 +27,7 @@ class Map extends Component {
 
     return (
       <>
-        <HeaderWithAuth navigateTo={navigateTo} />
+        <Header navigateTo={navigateTo} />
         <div className="map-wrapper">
           <div data-testid="map" className="map" ref={this.mapContainer} />
         </div>

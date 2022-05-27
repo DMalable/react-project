@@ -1,4 +1,4 @@
-import { HeaderWithAuth } from "../Header/Header";
+import Header from "../Header/Header";
 // import { Button, Input, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -7,7 +7,7 @@ const Profile = (props) => {
 
   return (
     <>
-      <HeaderWithAuth navigateTo={navigateTo} />
+      <Header navigateTo={navigateTo} />
       <>Profile</>
     </>
   );
