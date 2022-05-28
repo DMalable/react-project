@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
 import Login from "../Login/Login";
-import { Registration } from "../Registration/Registration";
+import Registration from "../Registration/Registration";
 import { Map } from "../Map/Map";
 import { Profile } from "../Profile/Profile";
 import "./App.css";
-// import { withAuth } from "../../contexts/AuthContext";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -52,5 +51,4 @@ App.propTypes = {
   // logOut: PropTypes.func,
 };
 
-// export default withAuth(App);
 export default App;

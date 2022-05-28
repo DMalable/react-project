@@ -5,8 +5,8 @@ export const AuthContext = React.createContext({});
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  const logIn = (email, password) => {
-    if (email !== "mail@mail.com" || password !== "password") {
+  const logIn = (result) => {
+    if (!result.success || !result.token) {
       return;
     }
     setIsLoggedIn(true);
@@ -18,17 +18,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={{ logIn, logOut, isLoggedIn }}>{children}</AuthContext.Provider>;
 };
-
-// export const withAuth = (WrappedComponent) => {
-//   return class extends React.Component {
-//     render() {
-//       return (
-//         <AuthContext.Consumer>
-//           {(value) => {
-//             return <WrappedComponent {...value} {...this.props} />;
-//           }}
-//         </AuthContext.Consumer>
-//       );
-//     }
-//   };
-// };

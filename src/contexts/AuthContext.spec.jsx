@@ -23,7 +23,7 @@ describe("AuthContext", () => {
 
       expect(isLoggedIn).toBe(false);
       act(() => {
-        logIn("mail@mail.com", "password");
+        logIn({ success: true, token: "AUTH_TOKEN" });
       });
       expect(isLoggedIn).toBe(true);
     });

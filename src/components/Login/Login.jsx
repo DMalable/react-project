@@ -11,7 +11,36 @@ const Login = (props) => {
   const authenticate = (event) => {
     event.preventDefault();
     const { email, password } = event.target;
-    logIn(email.value, password.value);
+    //виды запросов
+    //получить список адресов
+    // fetch("https://loft-taxi.glitch.me/addressList")
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    //получить маршрут
+    // fetch("https://loft-taxi.glitch.me/route?address1=Эрмитаж&address2=Пулково (LED)")
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    //получить данные карты
+    // fetch("https://loft-taxi.glitch.me/card?token=AUTH_TOKEN")
+    //   .then((response) => response.json())
+    //   .then((data) => console.log(data));
+    //регистрация
+    // fetch("https://loft-taxi.glitch.me/register", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ email: "email@example.com", password: "password", name: "Name", surname: "Surname" }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => console.log(result));
+
+    //логин
+    fetch("https://loft-taxi.glitch.me/auth", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email.value, password: password.value }),
+    })
+      .then((response) => response.json())
+      .then((result) => logIn(result));
   };
 
   if (isLoggedIn) {
@@ -23,9 +52,9 @@ const Login = (props) => {
           <form className="login__form" onSubmit={authenticate}>
             <FormLabel>Войти</FormLabel>
             <InputLabel htmlFor="email">Email</InputLabel>
-            <Input id="email" type="email" name="email" />
+            <Input id="email" type="email" name="email" required />
             <InputLabel htmlFor="password">Пароль</InputLabel>
-            <Input id="password" type="password" name="password" variant="contained" color="primary" />
+            <Input id="password" type="password" name="password" variant="contained" color="primary" required />
             <Button data-testid="submit" type="submit" variant="contained" color="primary">
               Воити
             </Button>
