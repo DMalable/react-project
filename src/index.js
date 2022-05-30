@@ -9,6 +9,9 @@ import { theme } from "loft-taxi-mui-theme";
 import { AuthProvider } from "./contexts/AuthContext";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { BrowserRouter } from 'react-router-dom';
+// import { Provider } from "react-redux";
+// import { store } from '/store';
 
 const ExtendedTheme = createTheme(theme, {
   overrides: {
@@ -77,9 +80,13 @@ root.render(
   <React.StrictMode>
     <MuiThemeProvider theme={ExtendedTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
+        <BrowserRouter>
+          {/* <Provider store={store}> */}
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+          {/* </Provider> */}
+        </BrowserRouter>
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>
   </React.StrictMode>

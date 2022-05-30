@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
-import React, { useState } from "react";
 import { DatePicker } from "@material-ui/pickers";
 
 const Profile = (props) => {
@@ -95,4 +95,4 @@ Profile.propTypes = {
   navigateTo: PropTypes.func,
 };
 
-export { Profile };
+export default Profile;
