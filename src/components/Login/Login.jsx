@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 
-const Login = (props) => {
-  const { navigateTo } = props;
+const Login = () => {
   const authData = useContext(AuthContext);
   const { logIn, isLoggedIn } = authData;
 
@@ -45,10 +44,10 @@ const Login = (props) => {
       .then((result) => logIn(result));
   };
 
+  let history = useHistory();
+
   if (isLoggedIn) {
-    // navigateTo("map");
-    //Не переходит на карту?????
-    window.history.pushState({ path: "map" }, '', "/map");
+    history.push("/map");
   } else {
     return (
       <div className="login">
@@ -71,7 +70,6 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  navigateTo: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool,
   logIn: PropTypes.func,
   // logOut: PropTypes.func,

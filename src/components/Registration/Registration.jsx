@@ -1,11 +1,12 @@
 import React from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 
 
-const Registration = (props) => {
-  const { navigateTo } = props;
+// const Registration = (props) => {
+const Registration = () => {
+  // const { navigateTo } = props;
 
   const registrate = (event) => {
     event.preventDefault();
@@ -41,8 +42,8 @@ const Registration = (props) => {
   );
 };
 
-Registration.propTypes = {
-  navigateTo: PropTypes.func.isRequired,
-};
+// Registration.propTypes = {
+//   navigateTo: PropTypes.func.isRequired,
+// };
 
 export default Registration;

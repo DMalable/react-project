@@ -1,9 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import Header from "../Header/Header";
 import mapboxgl from "mapbox-gl";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
+import { AuthContext } from "../../contexts/AuthContext";
 
-const Map = (props) => {
+
+const Map = () => {
+  const authData = useContext(AuthContext);
+  const { isLoggedIn } = authData;
+
   // let map = null;
   let mapContainer = React.createRef();
 
@@ -23,11 +28,12 @@ const Map = (props) => {
     };
   });
 
-  const { navigateTo } = props;
+  // const { navigateTo } = props;
 
   return (
     <>
-      <Header navigateTo={navigateTo} />
+      {/* <Header navigateTo={navigateTo} /> */}
+      <Header />
       <div className="map-wrapper">
         <div data-testid="map" className="map" ref={mapContainer} />
       </div>
@@ -35,8 +41,8 @@ const Map = (props) => {
   );
 }
 
-Map.propTypes = {
-  navigateTo: PropTypes.func,
-};
+// Map.propTypes = {
+//   navigateTo: PropTypes.func,
+// };
 
 export default Map;

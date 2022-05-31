@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import logo from "./../../logo.png";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from 'react-router-dom';
 
-
-const Header = (props) => {
-  const { navigateTo } = props;
+const Header = () => {
   const authData = useContext(AuthContext);
   const { logOut } = authData;
 
-  const unauthenticate = () => {
+  const unauthenticate = (event) => {
+    event.preventDefault();
     logOut();
-    navigateTo("login");
   };
 
   return (
@@ -28,7 +26,7 @@ const Header = (props) => {
             <Link className="link header-link" to='/profile'>Профиль</Link>
           </li>
           <li className="header-item">
-            <Link className="link header-link" to='/'>Выйти</Link>
+            <Link className="link header-link" onClick={unauthenticate} >Выйти</Link>
           </li>
         </ul>
       </nav>
@@ -37,7 +35,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  navigateTo: PropTypes.func.isRequired,
+  // navigateTo: PropTypes.func.isRequired,
   logOut: PropTypes.func,
   // isLoggedIn: PropTypes.bool.isRequired,
   // logIn: PropTypes.func.isRequired,

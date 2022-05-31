@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Header from "../Header/Header";
 import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { DatePicker } from "@material-ui/pickers";
 
-const Profile = (props) => {
-  const { navigateTo } = props;
+const Profile = () => {
+  // const { navigateTo } = props;
   const [selectedDate, handleDateChange] = useState(new Date());
 
   const saveCardInfo = (event) => {
@@ -29,7 +29,8 @@ const Profile = (props) => {
 
   return (
     <>
-      <Header navigateTo={navigateTo} />
+      {/* <Header navigateTo={navigateTo} /> */}
+      <Header />
       <div className="profile">
         <div className="profile__modal">
           <form className="profile__form" onSubmit={saveCardInfo}>
@@ -91,8 +92,8 @@ const Profile = (props) => {
   );
 };
 
-Profile.propTypes = {
-  navigateTo: PropTypes.func,
-};
+// Profile.propTypes = {
+//   navigateTo: PropTypes.func,
+// };
 
 export default Profile;
