@@ -3,6 +3,8 @@ import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import logo from "./../../logo.png";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from 'react-router-dom';
+
 
 const Header = (props) => {
   const { navigateTo } = props;
@@ -18,33 +20,15 @@ const Header = (props) => {
     <header className="header">
       <img src={logo} alt="логотип" className="header-logo"></img>
       <nav>
-        <ul>
-          <li>
-            <Button
-              onClick={() => {
-                navigateTo("map");
-              }}
-              color="secondary"
-              className="header-button"
-            >
-              Карта
-            </Button>
+        <ul className="header-list">
+          <li className="header-item">
+            <Link className="link header-link" to='/map'>Карта</Link>
           </li>
-          <li>
-            <Button
-              className="header-button"
-              onClick={() => {
-                navigateTo("profile");
-              }}
-              color="secondary"
-            >
-              Профиль
-            </Button>
+          <li className="header-item">
+            <Link className="link header-link" to='/profile'>Профиль</Link>
           </li>
-          <li>
-            <Button className="header-button" onClick={unauthenticate} color="secondary">
-              Выйти
-            </Button>
+          <li className="header-item">
+            <Link className="link header-link" to='/'>Выйти</Link>
           </li>
         </ul>
       </nav>

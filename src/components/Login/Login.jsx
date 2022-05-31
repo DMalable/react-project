@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from 'react-router-dom';
+
 
 const Login = (props) => {
   const { navigateTo } = props;
@@ -44,7 +46,9 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    navigateTo("map");
+    // navigateTo("map");
+    //Не переходит на карту?????
+    window.history.pushState({ path: "map" }, '', "/map");
   } else {
     return (
       <div className="login">
@@ -58,14 +62,7 @@ const Login = (props) => {
             <Button data-testid="submit" type="submit" variant="contained" color="primary">
               Воити
             </Button>
-            <Button
-              onClick={() => {
-                navigateTo("registration");
-              }}
-              color="primary"
-            >
-              <span style={{ color: "black" }}>Новый пользователь?</span>Регистрация
-            </Button>
+            <div className="login__form-link">Новый пользователь?<Link className="link" to='/registration'>Регистрация</Link></div>
           </form>
         </div>
       </div>

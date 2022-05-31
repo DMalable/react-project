@@ -29,18 +29,44 @@ ul {
   margin-right: auto;
 }
 
-.header-button {
-  font-size: 20px;
-  color: black;
+.header-item {
+  margin-right: 50px;
 }
 
-.header-button:hover {
+.link {
   color: #ffc617;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #ffa842;
+}
+
+.header-link {
+  font-size: 20px;
+  color: white;
+}
+
+.header-link:hover {
+  color: #fdbf5a;
 }
 
 .login,
 .profile,
 .registration {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__form-link,
+.registration__form-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile {
   height: calc(100% - 100px);
   display: flex;
   justify-content: center;

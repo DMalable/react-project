@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
+
 
 const Registration = (props) => {
   const { navigateTo } = props;
@@ -32,14 +34,7 @@ const Registration = (props) => {
           <Button data-testid="submit" type="submit" variant="contained" color="primary">
             Зарегистрироваться
           </Button>
-          <Button
-            onClick={() => {
-              navigateTo("login");
-            }}
-            color="primary"
-          >
-            <span style={{ color: "black" }}>Уже зарегистрированы?</span>Войти
-          </Button>
+          <div className="registration__form-link">Уже зарегистрированы?<Link className="link" to='/'>Войти</Link></div>
         </form>
       </div>
     </div>
