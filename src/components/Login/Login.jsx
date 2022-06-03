@@ -1,13 +1,11 @@
 import React, { useContext } from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../contexts/AuthContext";
 import { Link, useHistory } from 'react-router-dom';
+import { connect } from "react-redux";
+import { authenticate } from "../../actions/actions";
 
-
-const Login = () => {
-  const authData = useContext(AuthContext);
-  const { logIn, isLoggedIn } = authData;
+const Login = (props) => {
 
   const authenticate = (event) => {
     event.preventDefault();
@@ -25,6 +23,20 @@ const Login = () => {
     // fetch("https://loft-taxi.glitch.me/card?token=AUTH_TOKEN")
     //   .then((response) => response.json())
     //   .then((data) => console.log(data));
+    //сохранить карту
+    // fetch(" https://loft-taxi.glitch.me/card", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     cardNumber: cardNumber.value,
+    //     expiryDate: date.value,
+    //     cardName: cardholder.value,
+    //     cvc: cvc.value,
+    //     token: "AUTH_TOKEN",
+    //   }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => console.log(result));
     //регистрация
     // fetch("https://loft-taxi.glitch.me/register", {
     //   method: "POST",
@@ -35,18 +47,20 @@ const Login = () => {
     //   .then((result) => console.log(result));
 
     //логин
-    fetch("https://loft-taxi.glitch.me/auth", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.value, password: password.value }),
-    })
-      .then((response) => response.json())
-      .then((result) => logIn(result));
+    // fetch("https://loft-taxi.glitch.me/auth", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ email: email.value, password: password.value }),
+    // })
+    //   .then((response) => response.json())
+    //   .then((result) => logIn(result));
+
+    props.authenticate(email.value, password.value);
   };
 
   let history = useHistory();
 
-  if (isLoggedIn) {
+  if (props.isLoggedIn) {
     history.push("/map");
   } else {
     return (
@@ -75,4 +89,7 @@ Login.propTypes = {
   // logOut: PropTypes.func,
 };
 
-export default Login;
+export const LoginWithConnect = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { authenticate }
+)(Login);

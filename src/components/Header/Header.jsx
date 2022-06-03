@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
-// import { Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import logo from "./../../logo.png";
-import { AuthContext } from "../../contexts/AuthContext";
+import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
+import { logOut } from "../../actions/actions";
 
-const Header = () => {
-  const authData = useContext(AuthContext);
-  const { logOut } = authData;
+
+
+
+const Header = (props) => {
 
   const unauthenticate = (event) => {
     event.preventDefault();
-    logOut();
+    props.logOut();
   };
 
   return (
@@ -41,4 +42,8 @@ Header.propTypes = {
   // logIn: PropTypes.func.isRequired,
 };
 
-export default Header;
+export const HeaderWithConnect = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { logOut }
+)(Header);
+

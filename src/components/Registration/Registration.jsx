@@ -1,24 +1,16 @@
 import React from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
+import { connect } from "react-redux";
+import { registrate } from "../../actions/actions";
 
-
-// const Registration = (props) => {
-const Registration = () => {
-  // const { navigateTo } = props;
+const Registration = (props) => {
 
   const registrate = (event) => {
     event.preventDefault();
-    const { email, name, password } = event.target;
-    //регистрация
-    fetch("https://loft-taxi.glitch.me/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: email.value, password: password.value, name: name.value, surname: "-" }),
-    })
-      .then((response) => response.json())
-      .then((result) => console.log(result));
+    const { email, password, name } = event.target;
+    props.registrate(email.value, password.value, name.value);
   };
 
   return (
@@ -42,8 +34,12 @@ const Registration = () => {
   );
 };
 
-// Registration.propTypes = {
-//   navigateTo: PropTypes.func.isRequired,
-// };
+Registration.propTypes = {
+  registrate: PropTypes.func,
+};
 
-export default Registration;
+export const RegistrationWithConnect = connect(
+  null,
+  { registrate }
+)(Registration);
+

@@ -1,39 +1,26 @@
 import React, { useState } from "react";
-import Header from "../Header/Header";
+import { HeaderWithConnect } from "../Header/Header";
 import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { DatePicker } from "@material-ui/pickers";
+import { connect } from "react-redux";
+import { saveCard } from "../../actions/actions";
 
-const Profile = () => {
-  // const { navigateTo } = props;
+const Profile = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
 
-  const saveCardInfo = (event) => {
+  const saveCard = (event) => {
     event.preventDefault();
     const { cardNumber, date, cardholder, cvc } = event.target;
-    console.log(cardNumber.value, date.value, cardholder.value, cvc.value);
-    fetch(" https://loft-taxi.glitch.me/card", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        cardNumber: cardNumber.value,
-        expiryDate: date.value,
-        cardName: cardholder.value,
-        cvc: cvc.value,
-        token: "AUTH_TOKEN",
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => console.log(result));
+    props.saveCard(cardNumber.value, date.value, cardholder.value, cvc.value);
   };
 
   return (
     <>
-      {/* <Header navigateTo={navigateTo} /> */}
-      <Header />
+      <HeaderWithConnect />
       <div className="profile">
         <div className="profile__modal">
-          <form className="profile__form" onSubmit={saveCardInfo}>
+          <form className="profile__form" onSubmit={saveCard}>
             <FormLabel>Профиль</FormLabel>
             <div className="profile__form-descr">Введите платежные данные</div>
             <div className="profile__form-container">
@@ -64,7 +51,6 @@ const Profile = () => {
                       onChange={handleDateChange}
                       name="date"
                     />
-
                   </div>
                   <div className="profile__form-unit">
                     <InputLabel htmlFor="cvc">CVC</InputLabel>
@@ -92,8 +78,11 @@ const Profile = () => {
   );
 };
 
-// Profile.propTypes = {
-//   navigateTo: PropTypes.func,
-// };
+Profile.propTypes = {
+  saveCard: PropTypes.func,
+};
 
-export default Profile;
+export const ProfileWithConnect = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { saveCard }
+)(Profile);

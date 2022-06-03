@@ -6,12 +6,12 @@ import App from "./components/App/App";
 import { createTheme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "loft-taxi-mui-theme";
-import { AuthProvider } from "./contexts/AuthContext";
+// import { AuthProvider } from "./contexts/AuthContext";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { BrowserRouter } from 'react-router-dom';
-// import { Provider } from "react-redux";
-// import { store } from '/store';
+import { Provider } from "react-redux";
+import { store } from './store/store';
 
 const ExtendedTheme = createTheme(theme, {
   overrides: {
@@ -81,11 +81,9 @@ root.render(
     <MuiThemeProvider theme={ExtendedTheme}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <BrowserRouter>
-          {/* <Provider store={store}> */}
-          <AuthProvider>
+          <Provider store={store}>
             <App />
-          </AuthProvider>
-          {/* </Provider> */}
+          </Provider>
         </BrowserRouter>
       </MuiPickersUtilsProvider>
     </MuiThemeProvider>

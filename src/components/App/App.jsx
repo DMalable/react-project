@@ -1,53 +1,30 @@
 import React, { useContext } from "react";
-import Login from "../Login/Login";
-import Registration from "../Registration/Registration";
-import Map from "../Map/Map";
-import Profile from "../Profile/Profile";
+import { LoginWithConnect } from "../Login/Login";
+import { RegistrationWithConnect } from "../Registration/Registration";
+import { MapWithConnect } from "../Map/Map";
+import { ProfileWithConnect } from "../Profile/Profile";
 import "./App.css";
 import PropTypes from "prop-types";
-import { AuthContext } from "../../contexts/AuthContext";
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from "../PrivatRoute/PrivateRoute";
 // import RouteComponent from "../Profile/Profile";
+import { connect } from "react-redux";
 
-// const PAGES = {
-//   login: Login,
-//   registration: Registration,
-//   map: Map,
-//   profile: Profile,
-// };
 
-const App = () => {
+const App = (props) => {
 
-  const authData = useContext(AuthContext);
-  const { isLoggedIn } = authData;
-
-  // const navigateTo = (page) => {
-  //   //для страницы регистрации не требуется логина
-  //   if (isLoggedIn || page === "registration") {
-  //     setCurPageObj({ curPage: page });
-  //   } else {
-  //     setCurPageObj({ curPage: "login" });
-  //   }
-  // };
-
-  // const Page = PAGES[CurPageObj.curPage];
   return (
     <>
       <main>
         <section>
-          {/* <Page navigateTo={navigateTo} /> */}
           <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path='/registration' component={Registration} />
-            {!isLoggedIn && <Redirect to="/" />}
-            {/* <Route path='/map' component={Map} /> */}
-            <PrivateRoute isLoggedIn path='/map' component={Map} />
-            {/* <Route path='/profile' component={Profile} /> */}
-            <PrivateRoute isLoggedIn path='/profile' component={Profile} />
+            <Route exact path='/' component={LoginWithConnect} />
+            <Route path='/registration' component={RegistrationWithConnect} />
+            {!props.isLoggedIn && <Redirect to="/" />}
+            <PrivateRoute path='/map' component={MapWithConnect} />
+            <PrivateRoute path='/profile' component={ProfileWithConnect} />
             <Redirect to="/" />
           </Switch>
-
         </section>
       </main>
     </>
@@ -60,4 +37,5 @@ App.propTypes = {
   // logOut: PropTypes.func,
 };
 
-export default App;
+export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);
+

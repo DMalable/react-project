@@ -1,13 +1,12 @@
 import React, { useEffect, useContext } from "react";
-import Header from "../Header/Header";
+import { HeaderWithConnect } from "../Header/Header";
 import mapboxgl from "mapbox-gl";
 // import PropTypes from "prop-types";
-import { AuthContext } from "../../contexts/AuthContext";
+import { connect } from "react-redux";
+
 
 
 const Map = () => {
-  const authData = useContext(AuthContext);
-  const { isLoggedIn } = authData;
 
   // let map = null;
   let mapContainer = React.createRef();
@@ -28,12 +27,10 @@ const Map = () => {
     };
   });
 
-  // const { navigateTo } = props;
 
   return (
     <>
-      {/* <Header navigateTo={navigateTo} /> */}
-      <Header />
+      <HeaderWithConnect />
       <div className="map-wrapper">
         <div data-testid="map" className="map" ref={mapContainer} />
       </div>
@@ -45,4 +42,6 @@ const Map = () => {
 //   navigateTo: PropTypes.func,
 // };
 
-export default Map;
+export const MapWithConnect = connect(
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn })
+)(Map);
