@@ -1,7 +1,7 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { HeaderWithConnect } from "../Header/Header";
 import mapboxgl from "mapbox-gl";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 
@@ -38,9 +38,9 @@ const Map = () => {
   );
 }
 
-// Map.propTypes = {
-//   navigateTo: PropTypes.func,
-// };
+Map.propTypes = {
+  isLoggedIn: PropTypes.bool,
+};
 
 export const MapWithConnect = connect(
   (state) => ({ isLoggedIn: state.auth.isLoggedIn })

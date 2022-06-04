@@ -79,7 +79,8 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  saveCard: PropTypes.func,
+  saveCard: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool,
 };
 
 export const ProfileWithConnect = connect(

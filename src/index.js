@@ -6,7 +6,6 @@ import App from "./components/App/App";
 import { createTheme } from "@material-ui/core/styles";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import { theme } from "loft-taxi-mui-theme";
-// import { AuthProvider } from "./contexts/AuthContext";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { BrowserRouter } from 'react-router-dom';

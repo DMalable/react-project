@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { LoginWithConnect } from "../Login/Login";
 import { RegistrationWithConnect } from "../Registration/Registration";
 import { MapWithConnect } from "../Map/Map";
@@ -11,7 +11,7 @@ import PrivateRoute from "../PrivatRoute/PrivateRoute";
 import { connect } from "react-redux";
 
 
-const App = (props) => {
+const App = () => {
 
   return (
     <>
@@ -20,7 +20,6 @@ const App = (props) => {
           <Switch>
             <Route exact path='/' component={LoginWithConnect} />
             <Route path='/registration' component={RegistrationWithConnect} />
-            {!props.isLoggedIn && <Redirect to="/" />}
             <PrivateRoute path='/map' component={MapWithConnect} />
             <PrivateRoute path='/profile' component={ProfileWithConnect} />
             <Redirect to="/" />
@@ -33,8 +32,6 @@ const App = (props) => {
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
-  // logIn: PropTypes.func,
-  // logOut: PropTypes.func,
 };
 
 export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);

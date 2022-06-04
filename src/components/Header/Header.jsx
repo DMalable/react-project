@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import logo from "./../../logo.png";
 import { connect } from "react-redux";
@@ -27,7 +27,7 @@ const Header = (props) => {
             <Link className="link header-link" to='/profile'>Профиль</Link>
           </li>
           <li className="header-item">
-            <Link className="link header-link" onClick={unauthenticate} >Выйти</Link>
+            <Link className="link header-link" to='#' onClick={unauthenticate} >Выйти</Link>
           </li>
         </ul>
       </nav>
@@ -36,10 +36,8 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  // navigateTo: PropTypes.func.isRequired,
-  logOut: PropTypes.func,
-  // isLoggedIn: PropTypes.bool.isRequired,
-  // logIn: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool,
 };
 
 export const HeaderWithConnect = connect(

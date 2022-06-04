@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Link, useHistory } from 'react-router-dom';
@@ -84,9 +84,8 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
-  isLoggedIn: PropTypes.bool,
-  logIn: PropTypes.func,
-  // logOut: PropTypes.func,
+  isLoggedIn: PropTypes.bool.isRequired,
+  authenticate: PropTypes.func.isRequired,
 };
 
 export const LoginWithConnect = connect(
