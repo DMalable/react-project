@@ -1,9 +1,9 @@
 import { LOG_IN, LOG_OUT } from "../actions/actions";
 
-// const initialState = {
-//   isLoggedIn: false
-// };
-const initialState = JSON.parse(localStorage.store).auth;
+const initialState = {
+  isLoggedIn: false
+};
+// const initialState = JSON.parse(localStorage.store).auth;
 
 export default function (state = initialState, action) {
   switch (action.type) {

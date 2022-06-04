@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Button, Input, InputLabel, FormLabel } from "@material-ui/core";
 import { registrate } from "../../actions/actions";
 
 const Registration = (props) => {

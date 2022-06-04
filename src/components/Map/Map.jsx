@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { HeaderWithConnect } from "../Header/Header";
-import mapboxgl from "mapbox-gl";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import mapboxgl from "mapbox-gl";
+import { HeaderWithConnect } from "../Header/Header";
 
 
 

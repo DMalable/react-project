@@ -1,14 +1,13 @@
 import React from "react";
+import "./App.css";
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { LoginWithConnect } from "../Login/Login";
 import { RegistrationWithConnect } from "../Registration/Registration";
 import { MapWithConnect } from "../Map/Map";
 import { ProfileWithConnect } from "../Profile/Profile";
-import "./App.css";
-import PropTypes from "prop-types";
-import { Route, Switch, Redirect } from 'react-router-dom';
 import PrivateRoute from "../PrivatRoute/PrivateRoute";
-// import RouteComponent from "../Profile/Profile";
-import { connect } from "react-redux";
 
 
 const App = () => {

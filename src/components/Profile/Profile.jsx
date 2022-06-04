@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { HeaderWithConnect } from "../Header/Header";
-import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
-import PropTypes from "prop-types";
-import { DatePicker } from "@material-ui/pickers";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
+import { DatePicker } from "@material-ui/pickers";
+import { HeaderWithConnect } from "../Header/Header";
 import { saveCard } from "../../actions/actions";
 
 const Profile = (props) => {
