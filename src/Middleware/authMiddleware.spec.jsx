@@ -1,14 +1,10 @@
 import { authMiddleware } from "./authMiddleware";
-import { authenticate, registrate, saveCard } from "../actions/actions";
-import { serverLogIn, serverReg, serverCard } from "./api";
+import { authenticate } from "../actions/actions";
+import { serverLogIn } from "./api";
 
 jest.mock("./api", () => ({
   serverLogIn: jest.fn(() => true),
-  serverReg: jest.fn(() => true),
-  serverCard: jest.fn(() => true)
 }));
-
-
 
 describe("authMiddleware", () => {
   afterAll(jest.clearAllMocks)
@@ -40,35 +36,5 @@ describe("authMiddleware", () => {
         expect(dispatch).not.toBeCalled();
       });
     });
-  });
-  describe("#REGISTRATE", () => {
-    // describe("with correct credentials", () => {
-    it("registerates through api", async () => {
-      serverReg.mockImplementation(async () => true);
-      // const console = jest.fn();
-
-      await authMiddleware()()(
-        registrate("testemail", "testpassword", "testname", "testsurname")
-      );
-      expect(serverReg).toBeCalledWith("testemail", "testpassword", "testname", "testsurname");
-      //Как еще нужно проверить? 
-      // expect().toBeCalled();
-    });
-    // });
-  });
-  describe("#SAVE_CARD", () => {
-    // describe("with correct credentials", () => {
-    it("saves card through api", async () => {
-      serverCard.mockImplementation(async () => true);
-      // const console = jest.fn();
-
-      await authMiddleware()()(
-        saveCard("cardNumber", "date", "cardholder", "cvc")
-      );
-      expect(serverCard).toBeCalledWith("cardNumber", "date", "cardholder", "cvc");
-      //Как еще нужно проверить? 
-      // expect().toBeCalled();
-    });
-    // });
   });
 });

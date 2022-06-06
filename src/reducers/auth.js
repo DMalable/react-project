@@ -3,7 +3,6 @@ import { LOG_IN, LOG_OUT } from "../actions/actions";
 const initialState = {
   isLoggedIn: false
 };
-// const initialState = JSON.parse(localStorage.store).auth;
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -11,7 +10,9 @@ export default function (state = initialState, action) {
       return { isLoggedIn: true }
     }
     case LOG_OUT: {
-      return { isLoggedIn: false }
+      return {
+        isLoggedIn: false,
+      }
     }
     default:
       return state;
