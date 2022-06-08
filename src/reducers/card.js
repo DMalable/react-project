@@ -7,7 +7,7 @@ const initialState = {
   cvc: ""
 };
 
-export default function (state = initialState, action) {
+export function card(state = initialState, action) {
   switch (action.type) {
     case CARD_LOAD: {
       return {

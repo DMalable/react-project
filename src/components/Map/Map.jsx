@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import mapboxgl from "mapbox-gl";
 import { HeaderWithConnect } from "../Header/Header";
-import { getAddressList } from "../../actions/actions";
+import { getAddressList, getRoute } from "../../actions/actions";
 
-
-
-const Map = () => {
+const Map = (props) => {
 
   // let map = null;
   let mapContainer = React.createRef();
@@ -22,7 +20,8 @@ const Map = () => {
     });
 
     //Загрузка списка доступных точек на карте
-    getAddressList();
+    props.getAddressList();
+    props.getRoute('Кинотеатр Аврора', 'Эрмитаж');
 
     //зачем нужна очистка карты?
     return function cleanup() {
@@ -30,7 +29,6 @@ const Map = () => {
       map.remove && map.remove();
     };
   });
-
 
   return (
     <>
@@ -47,5 +45,6 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn })
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  { getAddressList, getRoute }
 )(Map);

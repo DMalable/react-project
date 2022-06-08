@@ -1,4 +1,4 @@
-import card from './card'
+import { card } from './card'
 import { cardUpload, cardReset } from '../actions/actions'
 
 describe("card", () => {
