@@ -27,3 +27,10 @@ export const serverCard = async (cardNumber, date, cardholder, cvc) => {
     .then((response) => response.json())
     .then((result) => result.success);
 };
+
+export const serverAddrList = async () => {
+  return fetch("https://loft-taxi.glitch.me/addressList")
+    .then((response) => response.json())
+    // .then((result) => result.success);
+    .then((result) => console.log('Результат запроса:', result));
+};

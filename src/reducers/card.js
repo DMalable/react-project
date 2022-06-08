@@ -1,5 +1,4 @@
-import { CARD_LOAD } from "../actions/actions";
-import { CARD_RESET } from "../actions/actions";
+import { CARD_LOAD, CARD_RESET } from "../actions/actions";
 
 const initialState = {
   cardNumber: "",

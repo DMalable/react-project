@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import mapboxgl from "mapbox-gl";
 import { HeaderWithConnect } from "../Header/Header";
+import { getAddressList } from "../../actions/actions";
 
 
 
@@ -19,6 +20,9 @@ const Map = () => {
       center: [30.3056504, 59.9429126],
       zoom: 10,
     });
+
+    //Загрузка списка доступных точек на карте
+    getAddressList();
 
     //зачем нужна очистка карты?
     return function cleanup() {

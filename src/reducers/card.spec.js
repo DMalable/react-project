@@ -1,10 +1,10 @@
 import card from './card'
-import { cardLoad, cardReset } from '../actions/actions'
+import { cardUpload, cardReset } from '../actions/actions'
 
 describe("card", () => {
   describe("#LOAD", () => {
     it('uses properties', () => {
-      expect(card({}, cardLoad())).toEqual({
+      expect(card({}, cardUpload())).toEqual({
         cardNumber: undefined,
         date: undefined,
         cardholder: undefined,
