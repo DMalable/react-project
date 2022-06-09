@@ -18,7 +18,7 @@ nav {
   display: inline-block;
 }
 
-ul {
+.header-list {
   display: flex;
   list-style-type: none;
   margin: 0;
@@ -58,6 +58,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .login__form-link,
@@ -148,4 +149,24 @@ ul {
   right: 0;
   left: 0;
   bottom: 0;
+}
+
+.route__modal {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 486px;
+  height: 470px;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.route__form-top {
+  padding: 10px 10px;
+}
+
+.route__form-bottom {
+  padding: 10px 10px;
 }
