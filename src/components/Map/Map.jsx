@@ -5,12 +5,13 @@ import mapboxgl from "mapbox-gl";
 import { HeaderWithConnect } from "../Header/Header";
 import { Button, Select, MenuItem } from "@material-ui/core";
 import { getAddressList, getRoute } from "../../actions/actions";
+import { drawRoute } from "./drawRoute";
 
 const Map = (props) => {
 
   // let map = null;
   let mapContainer = React.createRef();
-  const addresses = props.addresslList;
+  let addresses = [];
 
   const getRoute = (event) => {
     event.preventDefault();
@@ -19,6 +20,8 @@ const Map = (props) => {
     props.getRoute(fromAddress.value, toAddress.value);
   };
 
+
+  // let map = {};
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
     let map = new mapboxgl.Map({
@@ -28,9 +31,13 @@ const Map = (props) => {
       zoom: 10,
     });
 
+
     //Загрузка списка доступных точек на карте
     props.getAddressList();
-    console.log(props.addresslList);
+    addresses = props.addresslList;
+
+    // drawRoute(map, [[30.3, 59.9429126], [30.3056504, 59.9429126]]);
+    // drawRoute(map, addresses);
     //зачем нужна очистка карты?
     return function cleanup() {
       //требуется т.к. при первом рендере map = null?
@@ -38,6 +45,7 @@ const Map = (props) => {
     };
   });
 
+  console.log(addresses);
   const [addrFrom, setAddrFrom] = React.useState('');
   const handleChangeFrom = (event) => {
     setAddrFrom(event.target.value);
