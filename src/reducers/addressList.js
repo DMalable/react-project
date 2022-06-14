@@ -4,7 +4,7 @@ const initialState = {
   test: "",
 };
 
-export function addresslList(state = initialState, action) {
+export function addressList(state = initialState, action) {
   switch (action.type) {
     case SAVE_ADDRESSES: {
       return action.payload;

@@ -32,12 +32,20 @@ const Map = (props) => {
     });
 
 
-    //Загрузка списка доступных точек на карте
-    props.getAddressList();
-    addresses = props.addresslList;
 
     // drawRoute(map, [[30.3, 59.9429126], [30.3056504, 59.9429126]]);
     // drawRoute(map, addresses);
+
+    map.on('load', () => {
+      //Загрузка списка доступных точек на карте
+      props.getAddressList();
+      addresses = props.addressList;
+
+      if (props.route) {
+        drawRoute(map, props.route);
+      }
+    })
+
     //зачем нужна очистка карты?
     return function cleanup() {
       //требуется т.к. при первом рендере map = null?
@@ -45,7 +53,8 @@ const Map = (props) => {
     };
   });
 
-  console.log(addresses);
+  // console.log('addresses:', addresses);
+  // console.log('props:', props);
   const [addrFrom, setAddrFrom] = React.useState('');
   const handleChangeFrom = (event) => {
     setAddrFrom(event.target.value);
@@ -93,7 +102,7 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  // (state) => ({ isLoggedIn: state.auth.isLoggedIn, addresslList: state.addresslList }),
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn, route: state.route }),
+  // (state) => ({ isLoggedIn: state.auth.isLoggedIn, route: state.route, addressList: state.addressList }),
   { getAddressList, getRoute }
 )(Map);

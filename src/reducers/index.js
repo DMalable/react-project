@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import { auth } from "./auth";
 import { card } from "./card";
-import { addresslList } from "./addresslList";
+import { addressList } from "./addressList";
 import { route } from "./route";
 
-export default combineReducers({ auth, card, addresslList, route });
+export default combineReducers({ auth, card, addressList, route });

@@ -1,6 +1,8 @@
 export const drawRoute = (map, coordinates) => {
+
+  console.log('coords:', coordinates, [coordinates[0]])
   map.flyTo({
-    center: coordinates[0],
+    center: coordinates[0, 1],
     zoom: 15
   });
 
@@ -9,6 +11,7 @@ export const drawRoute = (map, coordinates) => {
     type: "line",
     source: {
       type: "geojson",
+      lineMetrics: true,
       data: {
         type: "Feature",
         properties: {},
@@ -23,8 +26,64 @@ export const drawRoute = (map, coordinates) => {
       "line-cap": "round"
     },
     paint: {
-      "line-color": "#ffc617",
-      "line-width": 8
+      "line-color": "#FDBF5A",
+      "line-width": 6,
+      'line-gradient': [
+        'interpolate',
+        ['linear'],
+        ['line-progress'],
+        0, "#FDBF5A",
+        1, "#94C525"
+      ]
     }
   });
+
+  // map.addSource("polygon", createGeoJSONCircle(coordinates[0], 0.5));
+
+  // map.addLayer({
+  //   "id": "polygon",
+  //   "type": "fill",
+  //   "source": "polygon",
+  //   "layout": {},
+  //   "paint": {
+  //     "fill-color": "blue",
+  //     "fill-opacity": 0.6
+  //   }
+  // });
+
+  map.addLayer({
+    id: "start-point",
+    type: "circle",
+    source: {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [coordinates[0, 1]]
+        }
+      }
+    },
+    paint: {
+      'circle-color': '#00b7bf',
+      'circle-radius': 8,
+      'circle-stroke-width': 1,
+      'circle-stroke-color': '#333',
+    },
+  });
+
+
+  // "type": "geojson",
+  // "data": {
+  //   "type": "FeatureCollection",
+  //   "features": [{
+  //     "type": "Feature",
+  //     "geometry": {
+  //       "type": "Polygon",
+  //       "coordinates": [ret]
+  //     }
+  //   }]
+  // }
+
+
 };

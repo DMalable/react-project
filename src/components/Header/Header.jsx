@@ -6,8 +6,6 @@ import { logOut } from "../../actions/actions";
 import logo from "./../../logo.png";
 
 
-
-
 const Header = (props) => {
 
   const unauthenticate = (event) => {
