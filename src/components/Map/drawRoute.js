@@ -1,8 +1,7 @@
 export const drawRoute = (map, coordinates) => {
 
-  console.log('coords:', coordinates, [coordinates[0]])
   map.flyTo({
-    center: coordinates[0, 1],
+    center: coordinates[0],
     zoom: 15
   });
 
@@ -60,7 +59,7 @@ export const drawRoute = (map, coordinates) => {
         type: "Feature",
         geometry: {
           type: "LineString",
-          coordinates: [coordinates[0, 1]]
+          coordinates: [coordinates[0]]
         }
       }
     },
@@ -71,7 +70,6 @@ export const drawRoute = (map, coordinates) => {
       'circle-stroke-color': '#333',
     },
   });
-
 
   // "type": "geojson",
   // "data": {
@@ -84,6 +82,5 @@ export const drawRoute = (map, coordinates) => {
   //     }
   //   }]
   // }
-
 
 };

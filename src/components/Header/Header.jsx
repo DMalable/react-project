@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { logOut } from "../../actions/actions";
 import logo from "./../../logo.png";
 
-
 const Header = (props) => {
 
   const unauthenticate = (event) => {
@@ -42,4 +41,3 @@ export const HeaderWithConnect = connect(
   (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
   { logOut }
 )(Header);
-

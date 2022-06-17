@@ -1,4 +1,4 @@
-import { SAVE_ROUTE } from "../actions/actions";
+import { SAVE_ROUTE, LOG_OUT } from "../actions/actions";
 
 const initialState = {
   test: "",
@@ -9,9 +9,9 @@ export function route(state = initialState, action) {
     case SAVE_ROUTE: {
       return action.payload;
     }
-    // case CARD_RESET: {
-    //   return initialState
-    // }
+    case LOG_OUT: {
+      return initialState;
+    }
     default:
       return state;
   }

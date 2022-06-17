@@ -8,7 +8,6 @@ import App from "./App";
 
 jest.mock("../Map/Map", () => ({ MapWithConnect: () => <div>Map content</div> }));
 
-
 describe("App", () => {
   describe("when logged out", () => {
     it("renders correctly", () => {

@@ -1,10 +1,11 @@
-import { CARD_LOAD, CARD_RESET } from "../actions/actions";
+import { CARD_LOAD, LOG_OUT } from "../actions/actions";
 
 const initialState = {
   cardNumber: "",
   date: "",
   cardholder: "",
-  cvc: ""
+  cvc: "",
+  token: ""
 };
 
 export function card(state = initialState, action) {
@@ -14,11 +15,12 @@ export function card(state = initialState, action) {
         cardNumber: action.payload.cardNumber,
         date: action.payload.date,
         cardholder: action.payload.cardholder,
-        cvc: action.payload.cvc
+        cvc: action.payload.cvc,
+        token: action.payload.token
       }
     }
-    case CARD_RESET: {
-      return initialState
+    case LOG_OUT: {
+      return initialState;
     }
     default:
       return state;

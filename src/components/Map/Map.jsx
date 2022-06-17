@@ -11,17 +11,18 @@ const Map = (props) => {
 
   // let map = null;
   let mapContainer = React.createRef();
-  let addresses = [];
 
-  const getRoute = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const { fromAddress, toAddress } = event.target;
-    console.log(fromAddress.value, toAddress.value);
     props.getRoute(fromAddress.value, toAddress.value);
   };
 
+  if (!props.addressList.length) {
+    //Загрузка списка доступных точек на карте
+    props.getAddressList();
+  }
 
-  // let map = {};
   useEffect(() => {
     mapboxgl.accessToken = "pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA";
     let map = new mapboxgl.Map({
@@ -31,30 +32,17 @@ const Map = (props) => {
       zoom: 10,
     });
 
-
-
-    // drawRoute(map, [[30.3, 59.9429126], [30.3056504, 59.9429126]]);
-    // drawRoute(map, addresses);
-
     map.on('load', () => {
-      //Загрузка списка доступных точек на карте
-      props.getAddressList();
-      addresses = props.addressList;
-
-      if (props.route) {
+      if (Array.isArray(props.route)) {
         drawRoute(map, props.route);
       }
     })
 
-    //зачем нужна очистка карты?
     return function cleanup() {
-      //требуется т.к. при первом рендере map = null?
       map.remove && map.remove();
     };
   });
 
-  // console.log('addresses:', addresses);
-  // console.log('props:', props);
   const [addrFrom, setAddrFrom] = React.useState('');
   const handleChangeFrom = (event) => {
     setAddrFrom(event.target.value);
@@ -64,37 +52,43 @@ const Map = (props) => {
     setAddrTo(event.target.value);
   };
 
-  return (
-    <>
-      <HeaderWithConnect />
-      <div className="map-wrapper">
-        <div data-testid="map" className="map" ref={mapContainer} />
-        <div className="route__modal">
-          <form className="route__form" onSubmit={getRoute}>
-            <div className="route__form-top">
-              <Select name="fromAddress" value={addrFrom} onChange={handleChangeFrom} >
-                {/* <MenuItem value={""}> Выберите адрес </MenuItem> */}
-                <MenuItem value={"Эрмитаж"}> Эрмитаж </MenuItem>
-                <MenuItem value={"Кинотеатр Аврора"}> Кинотеатр Аврора </MenuItem>
-                <MenuItem value={"Мариинский театр"}> Мариинский театр </MenuItem>
-                {/* {addresses.map((addr, index) => (<MenuItem key={index} value={addr}> {addr} </MenuItem>))} */}
-              </Select>
-              <Select name="toAddress" value={addrTo} onChange={handleChangeTo}>
-                {/* <MenuItem value={""}> Выберите адрес </MenuItem> */}
-                <MenuItem value={"Эрмитаж"}> Эрмитаж </MenuItem>
-                <MenuItem value={"Кинотеатр Аврора"}> Кинотеатр Аврора </MenuItem>
-                <MenuItem value={"Мариинский театр"} disabled> Мариинский театр </MenuItem>
-                {/* {addresses.map((addr, index) => (<MenuItem key={index} value={addr}> {addr} </MenuItem>))} */}
-              </Select>
-            </div>
-            <div className="route__form-bottom">
-              <Button data-testid="submit" type="submit" variant="contained" color="primary">Заказать</Button>
-            </div>
-          </form>
+  //При наличии карты в профиле доступно окно заказа
+  if (props.cardNumber) {
+    return (
+      <>
+        <HeaderWithConnect />
+        <div className="map-wrapper">
+          <div data-testid="map" className="map" ref={mapContainer} />
+          <div className="route__modal">
+            <form className="route__form" onSubmit={handleSubmit}>
+              <div className="route__form-top">
+                <Select name="fromAddress" value={addrFrom} onChange={handleChangeFrom} >
+                  {/* отфильтрован адрес прибытия */}
+                  {props.addressList.map((addr, index) => ((addr !== addrTo) && <MenuItem key={index} value={addr}> {addr} </MenuItem>))}
+                </Select>
+                <Select name="toAddress" value={addrTo} onChange={handleChangeTo}>
+                  {/* отфильтрован адрес отправления */}
+                  {props.addressList.map((addr, index) => ((addr !== addrFrom) && <MenuItem key={index} value={addr}> {addr} </MenuItem>))}
+                </Select>
+              </div>
+              <div className="route__form-bottom">
+                <Button data-testid="submit" type="submit" variant="contained" color="primary">Заказать</Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } else {
+    return (
+      <>
+        <HeaderWithConnect />
+        <div className="map-wrapper">
+          <div data-testid="map" className="map" ref={mapContainer} />
+        </div>
+      </>
+    );
+  }
 }
 
 Map.propTypes = {
@@ -102,7 +96,6 @@ Map.propTypes = {
 };
 
 export const MapWithConnect = connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn, route: state.route }),
-  // (state) => ({ isLoggedIn: state.auth.isLoggedIn, route: state.route, addressList: state.addressList }),
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn, route: state.route, addressList: state.addressList, cardNumber: state.card.cardNumber }),
   { getAddressList, getRoute }
 )(Map);

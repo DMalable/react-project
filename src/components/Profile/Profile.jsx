@@ -4,15 +4,14 @@ import PropTypes from "prop-types";
 import { Button, Input, FormLabel, InputLabel } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 import { HeaderWithConnect } from "../Header/Header";
-import { saveCard } from "../../actions/actions";
+import { saveCard, getCard } from "../../actions/actions";
 
 const Profile = (props) => {
   const [selectedDate, handleDateChange] = useState(new Date());
-
-  const saveCard = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const { cardNumber, date, cardholder, cvc } = event.target;
-    props.saveCard(cardNumber.value, date.value, cardholder.value, cvc.value);
+    props.saveCard(cardNumber.value, date.value, cardholder.value, cvc.value, props.token);
   };
 
   return (
@@ -20,7 +19,7 @@ const Profile = (props) => {
       <HeaderWithConnect />
       <div className="profile">
         <div className="profile__modal">
-          <form className="profile__form" onSubmit={saveCard}>
+          <form className="profile__form" onSubmit={handleSubmit}>
             <FormLabel>Профиль</FormLabel>
             <div className="profile__form-descr">Введите платежные данные</div>
             <div className="profile__form-container">
@@ -84,6 +83,6 @@ Profile.propTypes = {
 };
 
 export const ProfileWithConnect = connect(
-  (state) => ({ isLoggedIn: state.auth.isLoggedIn }),
-  { saveCard }
+  (state) => ({ isLoggedIn: state.auth.isLoggedIn, token: state.auth.token }),
+  { saveCard, getCard }
 )(Profile);

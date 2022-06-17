@@ -42,4 +42,3 @@ export const RegistrationWithConnect = connect(
   null,
   { registrate }
 )(Registration);
-

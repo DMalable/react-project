@@ -29,6 +29,5 @@ describe("Profile", () => {
     expect(getByLabelText("Имя владельца")).toHaveAttribute("name", "cardholder");
     expect(getByLabelText("Номер карты")).toHaveAttribute("name", "cardNumber");
     expect(getByLabelText("CVC")).toHaveAttribute("name", "cvc");
-
   });
 });

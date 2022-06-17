@@ -9,10 +9,7 @@ import { MapWithConnect } from "../Map/Map";
 import { ProfileWithConnect } from "../Profile/Profile";
 import PrivateRoute from "../PrivatRoute/PrivateRoute";
 
-
-const App = (props) => {
-
-  console.log('пропсы', props)
+const App = () => {
   return (
     <>
       <main>
@@ -35,6 +32,3 @@ App.propTypes = {
 };
 
 export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);
-// export default connect((state) => ({ addressList: state.addressList }))(App);
-// export default connect(state => state)(App);
-

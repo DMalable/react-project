@@ -5,8 +5,6 @@ import { takeEvery, call, put } from "redux-saga/effects";
 export function* addressListSaga() {
   const addrList = yield call(serverAddrList);
   if (addrList) {
-    // console.log(addrList);
-    //можно ли обойтись без создания экшена и сразу в стор отправить массив адресов???
     yield put(saveAddresses(addrList));
   }
 }
