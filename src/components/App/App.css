@@ -1,0 +1,176 @@
+p,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  background-color: #1c1a19;
+  padding-left: 27px;
+}
+
+nav {
+  display: inline-block;
+}
+
+.header-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-logo {
+  margin-right: auto;
+}
+
+.header-item {
+  margin-right: 50px;
+}
+
+.link {
+  color: #ffc617;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #ffa842;
+}
+
+.header-link {
+  font-size: 20px;
+  color: white;
+}
+
+.header-link:hover {
+  color: #fdbf5a;
+}
+
+.login,
+.profile,
+.registration {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.login__form-link,
+.registration__form-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile {
+  height: calc(100% - 100px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__modal,
+.registration__modal {
+  width: 580px;
+  padding: 60px 115px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.profile__modal {
+  width: 888px;
+  padding: 60px 45px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.login__form,
+.registration__form,
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile__form-descr {
+  text-align: center;
+  display: none;
+}
+
+.profile__form-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.profile__form-inputs {
+  width: 355px;
+}
+
+.profile__form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile__form-unit {
+  width: 160px;
+}
+
+.card {
+  width: 345px;
+  height: 180px;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 18px 16px 16px 28px;
+}
+
+.profile__button-container {
+  display: flex;
+  justify-content: center;
+}
+.profile__form-button {
+  width: 353px;
+}
+
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.route__modal {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 486px;
+  background-color: #fff;
+  box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.route__form-top {
+  padding: 10px 20px;
+}
+
+.route__form-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 36px;
+  box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
