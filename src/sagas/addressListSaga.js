@@ -3,9 +3,13 @@ import { serverAddrList } from "../middleware/api";
 import { takeEvery, call, put } from "redux-saga/effects";
 
 export function* addressListSaga() {
-  const addrList = yield call(serverAddrList);
-  if (addrList) {
-    yield put(saveAddresses(addrList));
+  try {
+    const addrList = yield call(serverAddrList);
+    if (addrList) {
+      yield put(saveAddresses(addrList));
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 

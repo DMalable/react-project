@@ -3,10 +3,14 @@ import { serverRoute } from "../middleware/api";
 import { takeEvery, call, put } from "redux-saga/effects";
 
 export function* routeSaga(action) {
-  const { fromAddress, toAddress } = action.payload;
-  const route = yield call(serverRoute, fromAddress, toAddress);
-  if (route) {
-    yield put(saveRoute(route));
+  try {
+    const { fromAddress, toAddress } = action.payload;
+    const route = yield call(serverRoute, fromAddress, toAddress);
+    if (route) {
+      yield put(saveRoute(route));
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 

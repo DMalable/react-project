@@ -13,14 +13,14 @@ describe("card", () => {
     })
   })
 
-  describe("#RESET", () => {
-    it('resets info', () => {
-      expect(card({}, cardReset())).toEqual({
-        cardNumber: "",
-        date: "",
-        cardholder: "",
-        cvc: ""
-      })
-    })
-  })
+  // describe("#RESET", () => {
+  //   it('resets info', () => {
+  //     expect(card({}, cardReset())).toEqual({
+  //       cardNumber: "",
+  //       date: "",
+  //       cardholder: "",
+  //       cvc: ""
+  //     })
+  //   })
+  // })
 })
