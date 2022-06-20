@@ -50,7 +50,7 @@ const ExtendedTheme = createTheme(theme, {
     MuiInput: {
       root: {
         display: "block",
-        marginBottom: "20px",
+        marginBottom: "5px",
       },
     },
     MuiFormLabel: {
@@ -59,6 +59,7 @@ const ExtendedTheme = createTheme(theme, {
         fontSize: "30px",
         fontWeight: "700",
         textAlign: "center",
+        marginTop: "10px",
         marginBottom: "50px",
       },
     },
